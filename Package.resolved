@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "KeychainWrapper",
+        "repositoryURL": "https://github.com/pavlovskyive/keychain-wrapper",
+        "state": {
+          "branch": null,
+          "revision": "bd4cd4c110b83931943d04d65e5e5a732cd59a99",
+          "version": "1.1.0"
+        }
+      },
+      {
+        "package": "NetworkService",
+        "repositoryURL": "https://github.com/pavlovskyive/network-service",
+        "state": {
+          "branch": null,
+          "revision": "84ab54fd077fa7749657fd458ebdc616157c0bed",
+          "version": "1.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
