@@ -18,7 +18,7 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         .package(name: "NetworkService",
                  url: "https://github.com/pavlovskyive/network-service",
-                 from: "1.0.0"),
+                 from: "1.1.1"),
 
         .package(name: "KeychainWrapper",
                  url: "https://github.com/pavlovskyive/keychain-wrapper",
