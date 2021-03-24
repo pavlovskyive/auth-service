@@ -1,5 +1,5 @@
 //
-//  AuthProvider+private.swift
+//  AuthService+private.swift
 //  
 //
 //  Created by Vsevolod Pavlovskyi on 24.03.2021.
@@ -24,10 +24,8 @@ extension AuthProvider {
 
     func makeLogoutResource(token: String) -> Resource? {
 
-        let tokenObj = Token(token: token)
-
-        guard let body = try? JSONEncoder().encode(tokenObj),
-              let url = buildURL(with: config.logoutPath) else {
+        guard let url = buildURL(with: config.logoutPath),
+              let body = token.data(using: .utf8) else {
             return nil
         }
 
@@ -56,14 +54,21 @@ extension AuthProvider {
     }
 
     // MARK: Save Token
-
-    func saveToken(token: String, then: @escaping (AuthError?) -> Void) {
+    
+    func handleTokenData(data: Data, then: @escaping (AuthError?) -> Void) {
+        guard let token = String(data: data, encoding: .utf8) else {
+            then(.badData)
+            return
+        }
+        
         do {
             try secureStorage.set(token, forKey: "token")
-            then(nil)
         } catch {
             then(.secureStorageError)
+            return
         }
+
+        then(nil)
     }
 
     // MARK: Network Error handling

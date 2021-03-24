@@ -21,6 +21,7 @@ public enum AuthError: Error {
 
     // Network Errors
     case networkError(NetworkError)
+    case badData
 
     // Secure Storage Errors
     case secureStorageError

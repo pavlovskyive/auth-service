@@ -1,5 +1,5 @@
 //
-//  AuthProvider+public.swift
+//  AuthService+public.swift
 //  
 //
 //  Created by Vsevolod Pavlovskyi on 24.03.2021.
@@ -19,13 +19,12 @@ extension AuthProvider {
             return
         }
 
-        networkService.performRequest(for: resource, decodingTo: Token.self) { result in
+        networkService.performRequest(for: resource) { result in
             switch result {
-            case .success(let tokenResponse):
-                let token = tokenResponse.token
-                saveToken(token: token, then: then)
+            case .success(let tokenData):
+                self.handleTokenData(data: tokenData, then: then)
             case .failure(let error):
-                handleNetworkError(error: error, then: then)
+                self.handleNetworkError(error: error, then: then)
             }
         }
     }
@@ -53,7 +52,7 @@ extension AuthProvider {
             case .success:
                 then(nil)
             case .failure(let error):
-                handleNetworkError(error: error, then: then)
+                self.handleNetworkError(error: error, then: then)
             }
         }
     }
@@ -67,15 +66,12 @@ extension AuthProvider {
             return
         }
 
-        networkService.performRequest(for: resource,
-                                      decodingTo: Token.self) { result in
-
+        networkService.performRequest(for: resource) { result in
             switch result {
-            case .success(let tokenResponse):
-                let token = tokenResponse.token
-                saveToken(token: token, then: then)
+            case .success(let tokenData):
+                self.handleTokenData(data: tokenData, then: then)
             case .failure(let error):
-                handleNetworkError(error: error, then: then)
+                self.handleNetworkError(error: error, then: then)
             }
         }
     }
