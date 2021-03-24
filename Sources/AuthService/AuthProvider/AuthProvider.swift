@@ -27,9 +27,10 @@ public class AuthProvider: AuthService {
     public init(networkService: NetworkProvider = NetworkService(),
                 secureStorage: SecureStorage = KeychainWrapper(),
                 config: AuthConfig) {
-
         self.networkService = networkService
         self.secureStorage = secureStorage
         self.config = config
+        
+        self.networkService.defaultHeaders = ["Content-Type": "application/json", "accept": "application/json"]
     }
 }
