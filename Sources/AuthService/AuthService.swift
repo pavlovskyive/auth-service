@@ -60,6 +60,7 @@ public final class AuthService: Authenticator {
         }
 
         networkProvider.performRequest(for: resource) { result in
+
             switch result {
             case .success:
                 then(nil)
@@ -94,6 +95,7 @@ public final class AuthService: Authenticator {
 extension AuthService {
 
     // MARK: Resource creations
+
     func makeLoginResource(credentials: [String: String]) -> Resource? {
 
         guard let body = try? JSONSerialization.data(withJSONObject: credentials),
@@ -143,6 +145,8 @@ extension AuthService {
 
         return components.url
     }
+    
+    // MARK: Handlers
     
     func handleTokenData(_ data: Data, then: @escaping (Result<String, AuthError>) -> Void) {
 
