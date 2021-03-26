@@ -104,8 +104,7 @@ extension AuthService {
         }
         
         let headers = [
-            "Content-Type": "application/json",
-            "accept": "application/json"
+            "Content-Type": "application/json"
         ]
 
         return Resource(method: .post, url: url, body: body, headers: headers)
@@ -128,8 +127,7 @@ extension AuthService {
         }
         
         let headers = [
-            "Content-Type": "application/json",
-            "accept": "application/json"
+            "Content-Type": "application/json"
         ]
 
         return Resource(method: .post, url: url, body: body, headers: headers)

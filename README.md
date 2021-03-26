@@ -1,3 +1,3 @@
-# AuthService
+# AuthLayer
 
 A description of this package.

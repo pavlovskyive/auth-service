@@ -1,7 +1,7 @@
 import XCTest
 
-import AuthServiceTests
+import AuthLayerTests
 
 var tests = [XCTestCaseEntry]()
-tests += AuthServiceTests.allTests()
+tests += AuthLayerTests.allTests()
 XCTMain(tests)

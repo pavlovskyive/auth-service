@@ -1,5 +1,5 @@
 import XCTest
-@testable import AuthService
+@testable import AuthLayer
 import NetworkService
 import KeychainWrapper
 
@@ -7,7 +7,7 @@ import KeychainWrapper
 
 // MARK: - Tests
 
-final class AuthServiceTests: XCTestCase {
+final class AuthLayerTests: XCTestCase {
     
 }
 

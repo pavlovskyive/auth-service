@@ -32,9 +32,9 @@ public class AuthProvider: Authenticator {
         authService.login(credentials: credentials) { [weak self] result in
             switch result {
             case .success(let token):
-                self?.authDelegates.invoke { $0.onLogin() }
                 self?.handleTokenRetreiving(token: token)
                 then(.success(token))
+                self?.authDelegates.invoke { $0.onLogin() }
             case .failure(let error):
                 then(.failure(error))
             }
@@ -53,9 +53,9 @@ public class AuthProvider: Authenticator {
         authService.register(credentials: credentials) { [weak self] result in
             switch result {
             case .success(let token):
-                self?.authDelegates.invoke { $0.onLogin() }
                 self?.handleTokenRetreiving(token: token)
                 then(.success(token))
+                self?.authDelegates.invoke { $0.onLogin() }
             case .failure(let error):
                 then(.failure(error))
             }
@@ -76,20 +76,20 @@ extension AuthProvider {
     
     func handleTokenRetreiving(token: String) {
         saveTokenToStorage(token)
-        setHeader(token)
+        setNetworkAuthorization(token)
     }
     
     func handleTokenDeletion() {
         deleteTokenFromStorage()
-        clearHeader()
+        removeNetworkAuthorization()
     }
     
-    func setHeader(_ token: String) {
-        networkProvider.setHeader(token, forKey: "Bearer token")
+    func setNetworkAuthorization(_ token: String) {
+        networkProvider.setAuthorization("Bearer: \(token)")
     }
     
-    func clearHeader() {
-        networkProvider.removeHeader(forKey: "Bearer token")
+    func removeNetworkAuthorization() {
+        networkProvider.clearAuthorization()
     }
     
     func saveTokenToStorage(_ token: String) {
