@@ -11,6 +11,8 @@ import KeychainWrapper
 
 public class AuthProvider: Authenticator {
     
+    public var loggedIn: Bool = false
+
     private var authDelegates = MulticastDelegate<AuthDelegate>()
 
     private var secureStorage: SecureStorage
@@ -75,11 +77,17 @@ public class AuthProvider: Authenticator {
 extension AuthProvider {
     
     func handleTokenRetreiving(token: String) {
+        
+        loggedIn = true
+        
         saveTokenToStorage(token)
         setNetworkAuthorization(token)
     }
     
     func handleTokenDeletion() {
+
+        loggedIn = false
+
         deleteTokenFromStorage()
         removeNetworkAuthorization()
     }

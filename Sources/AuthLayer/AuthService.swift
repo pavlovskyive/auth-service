@@ -13,6 +13,8 @@ public protocol Authenticator {
     typealias TokenResult = (Result<String, AuthError>) -> Void
     typealias ErrorCompletion = (AuthError?) -> Void
     
+    var loggedIn: Bool { get }
+    
     func login(credentials: [String: String], then: @escaping TokenResult)
     func logout(then: @escaping ErrorCompletion)
     func register(credentials: [String: String], then: @escaping TokenResult)
@@ -20,6 +22,8 @@ public protocol Authenticator {
 }
 
 public final class AuthService: Authenticator {
+    
+    public var loggedIn: Bool = false
     
     private let networkProvider: NetworkProvider
     private let config: AuthConfig
