@@ -93,7 +93,7 @@ extension AuthProvider {
     }
     
     func setNetworkAuthorization(_ token: String) {
-        networkProvider.setAuthorization("Bearer: \(token)")
+        networkProvider.setAuthorization("Bearer \(token)")
     }
     
     func removeNetworkAuthorization() {
