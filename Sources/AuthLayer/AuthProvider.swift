@@ -92,6 +92,7 @@ public class AuthProvider: Authenticator {
             switch result {
             case .success(let token):
                 log.info("Successfully registered")
+                self?.saveCredentialsToStorage(credentials)
                 self?.handleTokenRetreiving(token: token)
                 then(.success(token))
                 self?.authDelegates.invoke { $0.onLogin() }
